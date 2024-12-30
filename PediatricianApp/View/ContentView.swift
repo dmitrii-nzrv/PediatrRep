@@ -18,7 +18,7 @@ struct ContentView: View {
                 ScrollView {
                     LazyVStack(spacing: 20) {
                         ForEach(viewModel.filteredDoctors) { doctor in
-                            DoctorCardView(viewModel: viewModel, doctor: doctor)
+                            DoctorCardView(viewModel: viewModel, doctorId: doctor.id)  // Передаем только ID
                         }
                     }
                 }
@@ -30,6 +30,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 #Preview {
     ContentView()

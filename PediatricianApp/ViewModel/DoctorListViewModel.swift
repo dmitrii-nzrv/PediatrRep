@@ -12,15 +12,15 @@ class DoctorListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var selectedFilter: String = "По цене ↓"
     
+    // Метод для изменения состояния "избранного"
+    func toggleFavorite(doctorId: String) {
+        if let index = doctors.firstIndex(where: { $0.id == doctorId }) {
+            doctors[index].is_favorite.toggle()  // Переключаем состояние "избранного"
+        }
+    }
 
     init() {
         loadDoctors()
-    }
-    
-    func toggleFavorite(doctorId: String) {
-        if let index = doctors.firstIndex(where: { $0.id == doctorId }) {
-            doctors[index].is_favorite.toggle()
-        }
     }
 
     func loadDoctors() {
@@ -44,3 +44,4 @@ class DoctorListViewModel: ObservableObject {
         }
     }
 }
+
