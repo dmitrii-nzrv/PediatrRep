@@ -21,7 +21,7 @@ struct CustomPicker: View {
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 10)
                         .foregroundColor(selectedFilter == filter ? .white : .gray)
-                        .background(selectedFilter == filter ? Color.pink : Color(.systemGray6))
+                        .background(selectedFilter == filter ? Color.picker : Color(.systemGray6))
                         .cornerRadius(8)
                 }
             }

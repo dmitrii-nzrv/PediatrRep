@@ -33,6 +33,7 @@ struct Doctor: Identifiable, Codable {
     let gender_label: String
     let rank_label: String
     let category_label: String
+    let nearest_reception_time: Int?
 }
 
 struct Specialization: Codable {

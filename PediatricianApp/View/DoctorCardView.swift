@@ -4,9 +4,6 @@
 //
 //  Created by Dmitrii Nazarov on 29.12.2024.
 //
-
-import SwiftUI
-
 import SwiftUI
 
 struct DoctorCardView: View {
@@ -14,9 +11,7 @@ struct DoctorCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            // Верхняя часть: аватар, имя и избранное
             HStack(alignment: .top) {
-                // Аватар
                 if let avatarURL = doctor.avatar, let url = URL(string: avatarURL) {
                     AsyncImage(url: url) { image in
                         image
@@ -39,21 +34,14 @@ struct DoctorCardView: View {
                 }
 
                 // Информация о враче
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("\(doctor.last_name) \(doctor.first_name) \(doctor.patronymic)")
-                        .font(.headline)
-
-                    Text("Стаж: \(doctor.seniority) лет")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-
-//                    if !doctor.specialization.isEmpty {
-//                        Text(doctor.specialization.joined(separator: ", "))
-//                            .font(.subheadline)
-//                            .foregroundColor(.blue)
-//                    }
-
-                    // Рейтинг
+                VStack(alignment: .leading, spacing: 10) {
+                    VStack(alignment: .leading, spacing: 4){
+                        Text("\(doctor.last_name) ")
+                            .font(.headline)
+                        Text("\(doctor.first_name) \(doctor.patronymic)")
+                            .font(.headline)
+                    }
+                    
                     HStack(spacing: 2) {
                         ForEach(0..<5) { index in
                             Image(systemName: index < Int(doctor.ratings_rating) ? "star.fill" : "star")
@@ -62,30 +50,33 @@ struct DoctorCardView: View {
                                 .foregroundColor(.pink)
                         }
                     }
+                    
+                    Text("\(doctor.specialization.first?.name ?? "Не указана") ・ Стаж: \(doctor.seniority) лет")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                    Text("Цена: \(doctor.video_chat_price) ₽")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                    
                 }
                 Spacer()
 
-                // Иконка избранного
                 Image(systemName: doctor.is_favorite ? "heart.fill" : "heart")
                     .resizable()
                     .frame(width: 24, height: 24)
                     .foregroundColor(doctor.is_favorite ? .red : .gray)
             }
 
-            // Цена
-            Text("Цена: \(doctor.video_chat_price) ₽")
-                .font(.headline)
-                .foregroundColor(.black)
-
-            // Кнопка записи
-            Button("Записаться") {
+            Button(action: {
                 print("Запись к врачу \(doctor.last_name)")
+            }) {
+                Text(doctor.nearest_reception_time == nil ? "Нет свободного времени" : "Записаться")
             }
             .font(.headline)
-            .foregroundColor(.white)
+            .foregroundColor(doctor.nearest_reception_time == nil ?  .black : .white)
             .frame(maxWidth: .infinity)
             .padding()
-            .background(Color.pink)
+            .background(doctor.nearest_reception_time == nil ?  .myGray : .picker)
             .cornerRadius(10)
         }
         .padding()
@@ -94,4 +85,8 @@ struct DoctorCardView: View {
         .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
         .padding(.horizontal)
     }
+}
+
+#Preview {
+    ContentView()
 }
