@@ -11,9 +11,16 @@ class DoctorListViewModel: ObservableObject {
     @Published var doctors: [Doctor] = []
     @Published var searchText: String = ""
     @Published var selectedFilter: String = "По цене ↓"
+    
 
     init() {
         loadDoctors()
+    }
+    
+    func toggleFavorite(doctorId: String) {
+        if let index = doctors.firstIndex(where: { $0.id == doctorId }) {
+            doctors[index].is_favorite.toggle()
+        }
     }
 
     func loadDoctors() {

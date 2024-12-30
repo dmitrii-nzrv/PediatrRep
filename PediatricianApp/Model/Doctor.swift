@@ -28,7 +28,7 @@ struct Doctor: Identifiable, Codable {
     let ratings_rating: Double
     let seniority: Int
     let video_chat_price: Int
-    let is_favorite: Bool
+    var is_favorite: Bool
     let specialization: [Specialization]
     let gender_label: String
     let rank_label: String

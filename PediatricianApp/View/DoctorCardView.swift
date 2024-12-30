@@ -7,8 +7,10 @@
 import SwiftUI
 
 struct DoctorCardView: View {
-    var doctor: Doctor
+    @ObservedObject var viewModel: DoctorListViewModel
 
+    var doctor: Doctor
+  
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack(alignment: .top) {
@@ -61,10 +63,19 @@ struct DoctorCardView: View {
                 }
                 Spacer()
 
-                Image(systemName: doctor.is_favorite ? "heart.fill" : "heart")
-                    .resizable()
-                    .frame(width: 24, height: 24)
-                    .foregroundColor(doctor.is_favorite ? .red : .gray)
+//                Image(systemName: doctor.is_favorite ? "heart.fill" : "heart")
+//                    .resizable()
+//                    .frame(width: 24, height: 24)
+//                    .foregroundColor(doctor.is_favorite ? .red : .gray)
+                Button(action: {
+                    viewModel.toggleFavorite(doctorId: doctor.id)  // Вызываем метод в ViewModel
+                }) {
+                    Image(systemName: doctor.is_favorite ? "heart.fill" : "heart")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(doctor.is_favorite ? .red : .gray)
+                }
+                .padding()
             }
 
             Button(action: {
