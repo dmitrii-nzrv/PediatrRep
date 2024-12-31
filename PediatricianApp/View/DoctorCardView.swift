@@ -8,7 +8,7 @@ import SwiftUI
 
 struct DoctorCardView: View {
     @ObservedObject var viewModel: DoctorListViewModel
-    var doctorId: String  // Только идентификатор врача, не вся модель
+    var doctorId: String
     
     var doctor: Doctor? {
         viewModel.doctors.first { $0.id == doctorId }  // Извлекаем модель врача из ViewModel
@@ -83,19 +83,20 @@ struct DoctorCardView: View {
                     .padding()
                 }
 
-                Button(action: {
-                    print("Запись к врачу \(doctor.last_name)")
-                }) {
+// 
+                NavigationLink(destination: DoctorDetailView(viewModel: DoctorDetailViewModel(doctor: doctor))) {
                     Text(doctor.nearest_reception_time == nil ? "Нет свободного времени" : "Записаться")
+                        .font(.headline)
+                        .foregroundColor(doctor.nearest_reception_time == nil ? .black : .white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(doctor.nearest_reception_time == nil ? Color.myGray : Color.picker)
+                        .cornerRadius(10)
                 }
-                .font(.headline)
-                .foregroundColor(doctor.nearest_reception_time == nil ?  .black : .white)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(doctor.nearest_reception_time == nil ?  .myGray : .picker)
-                .cornerRadius(10)
+                
+                
             }
-            .padding()
+                .padding()
             .background(Color.white)
             .cornerRadius(12)
             .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
