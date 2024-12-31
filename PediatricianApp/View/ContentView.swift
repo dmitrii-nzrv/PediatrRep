@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             VStack(spacing: 16) {
                 SearchBar(text: $viewModel.searchText)
-                CustomPicker(selectedFilter: $viewModel.selectedFilter)
+                CustomPicker(selectedFilter: $viewModel.selectedFilter, isAscending: $viewModel.isAscending)
                 ScrollView {
                     LazyVStack(spacing: 20) {
                         ForEach(viewModel.filteredDoctors) { doctor in
@@ -30,6 +30,7 @@ struct ContentView: View {
         }
     }
 }
+
 
 
 #Preview {

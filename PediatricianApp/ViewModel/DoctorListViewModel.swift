@@ -11,7 +11,8 @@ class DoctorListViewModel: ObservableObject {
     @Published var doctors: [Doctor] = []
     @Published var searchText: String = ""
     @Published var selectedFilter: String = "По цене ↓"
-    
+    @Published var isAscending: Bool = false
+
     // Метод для изменения состояния "избранного"
     func toggleFavorite(doctorId: String) {
         if let index = doctors.firstIndex(where: { $0.id == doctorId }) {
@@ -37,10 +38,18 @@ class DoctorListViewModel: ObservableObject {
                 .localizedCaseInsensitiveContains(searchText)
         }
         switch selectedFilter {
-        case "По цене ↓": return filtered.sorted { $0.video_chat_price > $1.video_chat_price }
-        case "По стажу": return filtered.sorted { $0.seniority > $1.seniority }
-        case "По рейтингу": return filtered.sorted { $0.ratings_rating > $1.ratings_rating }
-        default: return filtered
+        case "По цене":
+            return filtered.sorted { isAscending ? $0.video_chat_price < $1.video_chat_price : $0.video_chat_price > $1.video_chat_price }
+        case "По стажу":
+            return filtered.sorted { isAscending ? $0.seniority < $1.seniority : $0.seniority > $1.seniority }
+        case "По рейтингу":
+            return filtered.sorted { isAscending ? $0.ratings_rating < $1.ratings_rating : $0.ratings_rating > $1.ratings_rating }
+        default:
+            return filtered
+        }
+        
+        func toggleSortOrder() {
+            isAscending.toggle()
         }
     }
 }

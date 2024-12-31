@@ -24,6 +24,8 @@ struct DoctorCardView: View {
                         AsyncImage(url: url) { image in
                             image
                                 .resizable()
+                                //.scaledToFill()
+                                .scaledToFill()
                                 .frame(width: 50, height: 50)
                                 .clipShape(Circle())
                         } placeholder: {
