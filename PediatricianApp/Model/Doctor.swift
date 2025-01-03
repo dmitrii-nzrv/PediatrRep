@@ -32,6 +32,9 @@ struct Doctor: Identifiable, Codable {
     let text_chat_price: Int
     let hospital_price: Int
     
+    let scientific_degree_label: String
+    let higher_education: [HigherEducation]
+    let work_expirience: [WorkExperience]
     
     var is_favorite: Bool
     let specialization: [Specialization]
@@ -43,4 +46,23 @@ struct Doctor: Identifiable, Codable {
 
 struct Specialization: Codable {
     let name: String
+}
+
+struct HigherEducation: Codable {
+    let id: Int
+    let university: String
+    let specialization: String
+    let qualification: String
+    let start_date: Int
+    let end_date: Int?
+    let until_now: Bool
+}
+
+struct WorkExperience: Codable {
+    let id: Int
+    let organization: String
+    let position: String
+    let start_date: Int
+    let end_date: Int?
+    let until_now: Bool
 }
