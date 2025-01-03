@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ProfileView: View {
     var body: some View{
-            NavigationView {
-                Text("Ваш профиль")
-                    .navigationTitle("Профиль")
-                    .navigationBarTitleDisplayMode(.inline)
-            }
+        NavigationView {
+            Text("Ваш профиль")
+                .navigationTitle("Профиль")
+                .navigationBarTitleDisplayMode(.inline)
         }
+    }
 }

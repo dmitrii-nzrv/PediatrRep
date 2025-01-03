@@ -15,10 +15,10 @@ struct DoctorCardView: View {
     var doctor: Doctor? {
         viewModel.doctors.first { $0.id == doctorId }  // Извлекаем модель врача из ViewModel
     }
-
+    
     var body: some View {
         guard let doctor = doctor else { return AnyView(EmptyView()) }  // Если врач не найден, не показываем представление
-
+        
         return AnyView(
             VStack(alignment: .leading, spacing: 10) {
                 // NavigationLink для всей ячейки
@@ -45,7 +45,7 @@ struct DoctorCardView: View {
                                 .clipShape(Circle())
                                 .foregroundColor(.gray)
                         }
-
+                        
                         // Информация о враче
                         VStack(alignment: .leading, spacing: 10) {
                             VStack(alignment: .leading, spacing: 6){
@@ -66,7 +66,7 @@ struct DoctorCardView: View {
                                         .foregroundColor(.pink)
                                 }
                             }
-
+                            
                             Text("\(doctor.specialization.first?.name ?? "Не указана") ・ Стаж: \(doctor.seniority) лет")
                                 .font(.subheadline)
                                 .foregroundColor(.gray)
@@ -75,7 +75,7 @@ struct DoctorCardView: View {
                                 .foregroundColor(.black)
                         }
                         Spacer()
-
+                        
                         // Кнопка для изменения избранного
                         Button(action: {
                             viewModel.toggleFavorite(doctorId: doctor.id)  // Вызываем метод в ViewModel
@@ -88,7 +88,7 @@ struct DoctorCardView: View {
                         .padding()
                     }
                 }
-
+                
                 // Кнопка "Записаться"
                 Button(action: {
                     print("Кнопка записаться нажата для \(doctor.last_name)")
@@ -102,16 +102,11 @@ struct DoctorCardView: View {
                         .cornerRadius(10)
                 }
             }
-            .padding()
-            .background(Color.white)
-            .cornerRadius(12)
-            .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
-            .padding(.horizontal)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(12)
+                .shadow(color: Color.gray.opacity(0.2), radius: 4, x: 0, y: 2)
+                .padding(.horizontal)
         )
     }
-}
-
-
-#Preview {
-    ContentView()
 }

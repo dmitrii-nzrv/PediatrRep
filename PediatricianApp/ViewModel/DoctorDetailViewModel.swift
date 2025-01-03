@@ -10,7 +10,7 @@ import Foundation
 class DoctorDetailViewModel: ObservableObject {
     @Published var name: String
     @Published var services: [(title: String, description: String, price: String)]
-
+    
     init(doctor: Doctor) {
         self.name = "\(doctor.first_name) \(doctor.last_name)"
         self.services = [

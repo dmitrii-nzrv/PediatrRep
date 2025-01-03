@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ChatView: View {
     var body: some View {
-           NavigationView {
-               Text("Чат с врачами")
-                   .navigationTitle("Чат")
-                   .navigationBarTitleDisplayMode(.inline)
-           }
-       }
+        NavigationView {
+            Text("Чат с врачами")
+                .navigationTitle("Чат")
+                .navigationBarTitleDisplayMode(.inline)
+        }
+    }
 }

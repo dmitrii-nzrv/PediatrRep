@@ -27,16 +27,8 @@ struct ContentView: View {
                 .background(Color(.systemGray6))
                 Spacer()
             }
-            
-            
             .navigationTitle("Педиатры")
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-}
-
-
-
-#Preview {
-    ContentView()
 }

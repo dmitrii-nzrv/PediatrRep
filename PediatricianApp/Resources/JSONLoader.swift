@@ -17,10 +17,8 @@ func loadDoctorsFromJSON() -> [Doctor]? {
         let data = try Data(contentsOf: url)
         let decoder = JSONDecoder()
         
-        // Декодируем верхний уровень JSON
         let response = try decoder.decode(DoctorResponse.self, from: data)
         
-        // Возвращаем массив врачей
         return response.record.data.users
     } catch {
         print("Failed to load or decode JSON: \(error.localizedDescription)")

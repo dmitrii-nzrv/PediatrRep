@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DoctorDetailView: View {
     @ObservedObject var viewModel: DoctorDetailViewModel
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             Text("Стоимость услуг")
@@ -22,7 +22,7 @@ struct DoctorDetailView: View {
                 let service = viewModel.services[index]
                 ServiceRow(title: service.title, description: service.description, price: service.price)
             }
-
+            
             Spacer()
         }
         .padding()
@@ -35,7 +35,7 @@ struct ServiceRow: View {
     var title: String
     var description: String
     var price: String
-
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)

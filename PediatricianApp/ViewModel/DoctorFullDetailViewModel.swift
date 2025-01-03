@@ -18,7 +18,7 @@ class DoctorFullDetailViewModel: ObservableObject {
     @Published var clinic: String
     @Published var servicePrice: String
     @Published var description: String
-
+    
     init(doctor: Doctor) {
         self.fullName = "\(doctor.last_name) \(doctor.first_name) \(doctor.patronymic)"
         self.avatarURL = doctor.avatar
@@ -32,7 +32,7 @@ class DoctorFullDetailViewModel: ObservableObject {
         Осуществляет расшифровку и снятие ЭКГ. Даёт рекомендации по диетологии. \
         Доктор имеет опыт работы в России и за рубежом. Проводит консультации пациентов \
         на английском языке.
-        """ // Примерное описание
+        """
     }
 }
 

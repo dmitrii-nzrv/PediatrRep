@@ -12,18 +12,17 @@ class DoctorListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var selectedFilter: String = "По цене ↓"
     @Published var isAscending: Bool = false
-
-    // Метод для изменения состояния "избранного"
+    
     func toggleFavorite(doctorId: String) {
         if let index = doctors.firstIndex(where: { $0.id == doctorId }) {
             doctors[index].is_favorite.toggle()  // Переключаем состояние "избранного"
         }
     }
-
+    
     init() {
         loadDoctors()
     }
-
+    
     func loadDoctors() {
         if let loadedDoctors = loadDoctorsFromJSON() {
             self.doctors = loadedDoctors
@@ -31,7 +30,7 @@ class DoctorListViewModel: ObservableObject {
             print("Failed to load doctors from JSON")
         }
     }
-
+    
     var filteredDoctors: [Doctor] {
         let filtered = doctors.filter {
             searchText.isEmpty || "\($0.last_name) \($0.first_name) \($0.patronymic)"

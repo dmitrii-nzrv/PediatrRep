@@ -10,18 +10,17 @@ import SwiftUI
 struct CustomPicker: View {
     @Binding var selectedFilter: String
     var filters = ["По цене", "По стажу", "По рейтингу"]
-    @Binding var isAscending: Bool // Добавьте это свойство
-
+    @Binding var isAscending: Bool
+    
     var body: some View {
         HStack(spacing: 0) {
             ForEach(filters, id: \.self) { filter in
                 Button(action: {
-                    //selectedFilter = filter
                     if selectedFilter == filter {
-                        isAscending.toggle() // Переключаем порядок сортировки
+                        isAscending.toggle()
                     } else {
                         selectedFilter = filter
-                        isAscending = false // По умолчанию убывание
+                        isAscending = false
                     }
                 }) {
                     Text("\(filter) \(selectedFilter == filter ? (isAscending ? "↑" : "↓") : "")")
