@@ -11,7 +11,10 @@ import SwiftUI
 struct PediatricianAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
+}
+#Preview {
+    MainTabView()
 }
